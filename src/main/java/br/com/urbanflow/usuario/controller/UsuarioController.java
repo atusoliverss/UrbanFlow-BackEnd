@@ -1,6 +1,6 @@
 package br.com.urbanflow.usuario.controller;
 
-import br.com.urbanflow.infrastructure.mapper.ObjectMapperUntil;
+import br.com.urbanflow.infrastructure.mapper.ObjectMapperUtil;
 import br.com.urbanflow.usuario.dto.UsuarioGetResponseDto;
 import br.com.urbanflow.usuario.dto.UsuarioLoginPostRequestDto;
 import br.com.urbanflow.usuario.dto.UsuarioPostRequestDto;
@@ -16,8 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController // Indica que esta classe é um controlador REST, gerenciando requisições HTTP.
 @RequestMapping(path = "/users") // Define a base do caminho de todas as rotas deste controlador.
 @RequiredArgsConstructor // Gera automaticamente um construtor com base nos atributos finais (final).
@@ -26,7 +24,7 @@ public class UsuarioController {
 
     // Injeção de dependência do repositório de usuários.
     private final UsuarioService userService;
-    private final ObjectMapperUntil objectMapperUntil;
+    private final ObjectMapperUtil objectMapperUtil;
 
     /**
      * Endpoint para buscar todos os usuários.
@@ -34,7 +32,7 @@ public class UsuarioController {
      */
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<UsuarioGetResponseDto>> findAll(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.userService.findAll(pageable).map(c -> objectMapperUntil.map(c, UsuarioGetResponseDto.class)));
+        return ResponseEntity.status(HttpStatus.OK).body(this.userService.findAll(pageable).map(c -> objectMapperUtil.map(c, UsuarioGetResponseDto.class)));
     }
 
     /**
@@ -44,7 +42,7 @@ public class UsuarioController {
      */
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> save(@RequestBody @Valid UsuarioPostRequestDto user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUntil.map(userService.save(objectMapperUntil.map(user, Usuario.class)), UsuarioGetResponseDto.class));
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(userService.save(objectMapperUtil.map(user, Usuario.class)), UsuarioGetResponseDto.class));
     }
 
     /**
@@ -65,11 +63,11 @@ public class UsuarioController {
      */
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@RequestBody @Valid UsuarioPutRequestDto user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUntil.map(userService.update(user), UsuarioGetResponseDto.class));
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(userService.update(user), UsuarioGetResponseDto.class));
     }
 
     @PostMapping(path = "/findbyemailandsenha", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByLoginAndPassword(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUntil.map(userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getPassword()), UsuarioGetResponseDto.class));
+        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getPassword()), UsuarioGetResponseDto.class));
     }
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * É marcada com {@link Component}, permitindo sua injeção em outras classes do Spring.
  */
 @Component
-public class ObjectMapperUntil {
+public class ObjectMapperUtil {
 
     // Instância única de ModelMapper usada para realizar as conversões.
     private static final ModelMapper MODEL_MAPPER;
