@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioPutRequestDto {
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("nome")
+    private String nome;
 
     @JsonProperty("email")
-    @Email(message = "Invalid email")
+    @Email(message = "email inválido")
     private String email;
 
     @JsonProperty("telefone")

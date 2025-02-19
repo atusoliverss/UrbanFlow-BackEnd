@@ -9,7 +9,7 @@ public interface UsuarioIService {
     Page<Usuario> findAll(Pageable pageable);
     Usuario findById(Long id);
     Usuario save(Usuario usuario);
-    void delete(String login);
+    void delete(String email);
     Usuario update(UsuarioPutRequestDto user);
 
     Usuario findByEmail(String email);

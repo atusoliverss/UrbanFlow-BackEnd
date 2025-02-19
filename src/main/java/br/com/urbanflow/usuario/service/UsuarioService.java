@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 /**
  * Classe de serviço responsável pela lógica de negócios relacionada à entidade {@link Usuario}.
  * Implementa a interface {@link UsuarioIService}.
@@ -83,12 +81,12 @@ public class UsuarioService implements UsuarioIService {
     @Override
     public Usuario update(UsuarioPutRequestDto user) {
         // Busca o usuário no banco de dados pelo email fornecido
-        Usuario usuarioFound = usuarioIRepository.findByEmail(user.getEmail()).orElseThrow(() -> new BusinessException("Usuário de email" + user.getEmail() +" não encontrado"));;
+        Usuario usuarioFound = usuarioIRepository.findByEmail(user.getEmail()).orElseThrow(() -> new BusinessException("Usuário de email" + user.getEmail() +" não encontrado"));
 
         // Verifica se o usuário foi encontrado
         if (usuarioFound != null) {
             // Atualiza os dados do usuário encontrado com as novas informações
-            usuarioFound.setName(user.getName());
+            usuarioFound.setNome(user.getNome());
 
             // Salva o usuário atualizado no banco de dados
             return usuarioIRepository.save(usuarioFound);

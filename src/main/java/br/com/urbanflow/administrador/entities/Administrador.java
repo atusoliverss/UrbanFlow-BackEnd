@@ -1,4 +1,4 @@
-package br.com.urbanflow.usuario.tipo.administrador.entities;
+package br.com.urbanflow.administrador.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import jakarta.persistence.*;

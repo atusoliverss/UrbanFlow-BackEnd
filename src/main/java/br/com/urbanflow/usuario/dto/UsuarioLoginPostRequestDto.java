@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioLoginPostRequestDto {
     @JsonProperty("email")
-    @NotBlank(message = "The email cannot be empty")
-    @NotNull(message = "The email is mandatory")
+    @NotBlank(message = "email não pode ser vazio")
+    @NotNull(message = "email é obrigatório")
     private String email;
 
     @JsonProperty("password")
-    @NotBlank(message = "The password cannot be empty")
-    @NotNull(message = "The password is mandatory")
-    private String password;
+    @NotBlank(message = "senha não pode ser vazio")
+    @NotNull(message = "senha é obrigatório")
+    private String senha;
 }

@@ -12,10 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioGetResponseDto {
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("login")
-    private String login;
+    @JsonProperty("nome")
+    private String nome;
     @JsonProperty("email")
     private String email;
     @JsonProperty("telefone")

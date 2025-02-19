@@ -16,37 +16,30 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioPostRequestDto {
-    @JsonProperty("name")
-    @NotBlank(message = "The name cannot be empty")
-    @NotNull(message = "The name is mandatory")
-    private String name;
-
-    @JsonProperty("login")
-    @NotBlank(message = "The login cannot be empty")
-    @NotNull(message = "The login is mandatory")
-    @Size(min = 3, max = 30, message = "Login must have a minimum of 3 characters and a maximum of 30 characters")
-    private String login;
+    @JsonProperty("nome")
+    @NotBlank(message = "nome não pode ser vazio")
+    @NotNull(message = "nome é obrigatório")
+    private String nome;
 
     @JsonProperty("email")
-    @Email(message = "Invalid email")
+    @Email(message = "email inválido")
     private String email;
 
-    @JsonProperty("password")
-    @NotBlank(message = "The password cannot be empty")
-    @NotNull(message = "The password is mandatory")
-    private String password;
+    @JsonProperty("senha")
+    @NotBlank(message = "senha não pode ser vazio")
+    @NotNull(message = "senha é obrigatório")
+    private String senha;
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "telefone não pode ser vazio")
+    @NotNull(message = "telefone é obrigatório")
     @JsonProperty("telefone")
     private String telefone;
 
-    @NotNull
+    @NotNull(message = "data nascimento é obrigatório")
     @JsonProperty("dataNascimento")
     private Date dataNascimento;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "tipo é obrigatório")
     @JsonProperty("tipo")
     private TipoUsuario tipoUsuario;
 }

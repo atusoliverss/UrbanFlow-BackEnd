@@ -1,7 +1,7 @@
 package br.com.urbanflow.historico.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
-import br.com.urbanflow.usuario.tipo.administrador.entities.Administrador;
+import br.com.urbanflow.administrador.entities.Administrador;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

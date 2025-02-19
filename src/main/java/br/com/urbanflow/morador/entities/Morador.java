@@ -1,4 +1,4 @@
-package br.com.urbanflow.usuario.tipo.morador.entities;
+package br.com.urbanflow.morador.entities;
 
 import br.com.urbanflow.endereco.entity.Endereco;
 import br.com.urbanflow.usuario.entities.Usuario;
@@ -9,7 +9,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity

@@ -11,13 +11,14 @@ import java.util.Date;
 @Table(name = "usuario") // Especifica o nome da tabela associada a esta entidade.
 @Data // Lombok: Gera automaticamente getters, setters, toString, equals e hashCode.
 @AllArgsConstructor // Lombok: Gera um construtor com todos os atributos da classe.
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor // Lombok: Gera um construtor vazio.
 @EqualsAndHashCode(callSuper = false) // Lombok: Configura o método equals e hashCode, ignorando atributos da classe pai.
 @Builder
 public class Usuario extends PersistenceEntity { // A classe Usuario herda atributos e comportamentos de PersistenceEntity.
 
-    @Column(name = "name", nullable = false) // Indica que a coluna "name" não pode ser nula no banco de dados.
-    private String name;
+    @Column(name = "nome", nullable = false) // Indica que a coluna "name" não pode ser nula no banco de dados.
+    private String nome;
 
     @Column(name = "email",nullable = false, unique = true) // Indica que a coluna "email" não pode ser nula.
     private String email;

@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController // Indica que esta classe é um controlador REST, gerenciando requisições HTTP.
-@RequestMapping(path = "/users") // Define a base do caminho de todas as rotas deste controlador.
+@RequestMapping(path = "/usuarios") // Define a base do caminho de todas as rotas deste controlador.
 @RequiredArgsConstructor // Gera automaticamente um construtor com base nos atributos finais (final).
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
@@ -67,7 +67,7 @@ public class UsuarioController {
     }
 
     @PostMapping(path = "/findbyemailandsenha", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findByLoginAndPassword(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getPassword()), UsuarioGetResponseDto.class));
+    public ResponseEntity<?> findByEmailAndSenha(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
+        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getSenha()), UsuarioGetResponseDto.class));
     }
 }

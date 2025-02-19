@@ -1,6 +1,7 @@
 package br.com.urbanflow.reclamacao.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
+import br.com.urbanflow.reclamacao.enums.StatusReclamacao;
 import br.com.urbanflow.servicopublico.entities.ServicoPublico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,9 @@ public class Reclamacao extends PersistenceEntity implements Serializable {
     @Column(name = "data_reclamacao", nullable = false)
     private LocalDate dataReclamacao;
 
-    @Column(nullable = false, length = 50)
-    private String status;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusReclamacao status;
 
     @Lob
     private byte[] evidencia;
