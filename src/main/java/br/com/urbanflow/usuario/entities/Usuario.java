@@ -29,10 +29,6 @@ public class Usuario extends PersistenceEntity { // A classe Usuario herda atrib
     @Column(name = "dataNascimento")
     private Date dataNascimento;
 
-    @Column(name = "tipo")
-    @Enumerated(EnumType.STRING)
-    private TipoUsuario tipoUsuario;
-
     @Column(name = "senha",nullable = false) // Indica que a coluna "senha" não pode ser nula.
     private String senha;
 }

@@ -39,7 +39,4 @@ public class UsuarioPostRequestDto {
     @JsonProperty("dataNascimento")
     private Date dataNascimento;
 
-    @NotNull(message = "tipo é obrigatório")
-    @JsonProperty("tipo")
-    private TipoUsuario tipoUsuario;
 }
