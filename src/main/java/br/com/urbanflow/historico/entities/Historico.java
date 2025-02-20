@@ -3,6 +3,7 @@ package br.com.urbanflow.historico.entities;
 import br.com.urbanflow.historico.enums.StatusHistorico;
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import br.com.urbanflow.administrador.entities.Administrador;
+import br.com.urbanflow.reclamacao.entities.Reclamacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,6 @@ public class Historico extends PersistenceEntity implements Serializable {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_administrador", nullable = false)
-    private Administrador administrador;
+    @JoinColumn(name = "fk_reclamacao", nullable = false)
+    private Reclamacao reclamacao;
 }

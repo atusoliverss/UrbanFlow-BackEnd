@@ -1,6 +1,5 @@
 package br.com.urbanflow.usuario.dto;
 
-import br.com.urbanflow.usuario.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

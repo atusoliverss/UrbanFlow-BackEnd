@@ -1,6 +1,9 @@
 package br.com.urbanflow.reclamacao.entities;
 
+import br.com.urbanflow.administrador.entities.Administrador;
+import br.com.urbanflow.historico.entities.Historico;
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
+import br.com.urbanflow.morador.entities.Morador;
 import br.com.urbanflow.reclamacao.enums.StatusReclamacao;
 import br.com.urbanflow.servicopublico.entities.ServicoPublico;
 import jakarta.persistence.*;
@@ -11,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -32,6 +36,14 @@ public class Reclamacao extends PersistenceEntity implements Serializable {
 
     @Lob
     private byte[] evidencia;
+
+
+    @OneToMany(mappedBy = "reclamacao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Historico> historico;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_morador", nullable = false)
+    private Morador morador;
 
     @ManyToOne
     @JoinColumn(name = "fk_servico_publico", nullable = false)

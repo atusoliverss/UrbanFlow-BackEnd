@@ -1,5 +1,6 @@
 package br.com.urbanflow.servicopublico.entities;
 
+import br.com.urbanflow.administrador.entities.Administrador;
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,8 @@ public class ServicoPublico extends PersistenceEntity implements Serializable {
 
     @Column(nullable = false, length = 100)
     private String categoria;
+
+    @OneToOne(mappedBy = "servicoPublico")
+    private Administrador administrador;
 }
 

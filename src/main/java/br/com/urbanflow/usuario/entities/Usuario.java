@@ -1,7 +1,6 @@
 package br.com.urbanflow.usuario.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
-import br.com.urbanflow.usuario.enums.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,6 +1,7 @@
 package br.com.urbanflow.administrador.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
+import br.com.urbanflow.servicopublico.entities.ServicoPublico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +23,8 @@ public class Administrador extends PersistenceEntity implements Serializable {
 
     @Column(nullable = false, length = 100)
     private String cargo;
+
+    @OneToOne
+    @JoinColumn(name = "id_servico")
+    private ServicoPublico servicoPublico;
 }
