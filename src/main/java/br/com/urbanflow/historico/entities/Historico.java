@@ -1,5 +1,6 @@
 package br.com.urbanflow.historico.entities;
 
+import br.com.urbanflow.historico.enums.StatusHistorico;
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import br.com.urbanflow.administrador.entities.Administrador;
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 public class Historico extends PersistenceEntity implements Serializable {
 
     @Column(nullable = false, length = 50)
-    private String status;
+    private StatusHistorico status;
 
     @Column(nullable = false)
     private LocalDate data;
