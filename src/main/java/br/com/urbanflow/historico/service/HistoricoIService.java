@@ -9,4 +9,5 @@ public interface HistoricoIService {
     //Historico findHistoricoById(Long id);
     Historico findHistoricosById(Long id);
     Historico updateHistorico(Historico historico);
+    void deleteById(Long id);
 }

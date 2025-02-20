@@ -5,6 +5,7 @@ import br.com.urbanflow.historico.repository.HistoricoIRepository;
 import br.com.urbanflow.infrastructure.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +52,18 @@ public class HistoricoService implements HistoricoIService{
         } catch (Exception e) {
             log.error("Erro ao atualizar Historico");
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        log.info("Deletando historico com ID: " + id);
+        try {
+            historicoIRepository.deleteById(id);
+        }catch (BusinessException e){
+            log.error("Erro ao deletar historico com ID: " + e.getMessage());
+            throw new BusinessException(e.getMessage());
         }
     }
 }
