@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -27,7 +28,7 @@ public class ServicoPublico extends PersistenceEntity implements Serializable {
     @Column(nullable = false, length = 100)
     private String categoria;
 
-    @OneToOne(mappedBy = "servicoPublico")
-    private Administrador administrador;
+    @OneToMany(mappedBy = "servicoPublico")
+    private List<Administrador> administradores;
 }
 

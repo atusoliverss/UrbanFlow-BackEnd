@@ -33,6 +33,11 @@ public class UsuarioPostRequestDto {
     @JsonProperty("telefone")
     private String telefone;
 
+    @NotBlank(message = "tipo não pode ser vazio")
+    @NotNull(message = "tipo é obrigatório")
+    @JsonProperty("tipo")
+    private String tipo;
+
     @NotNull(message = "data nascimento é obrigatório")
     @JsonProperty("dataNascimento")
     private Date dataNascimento;

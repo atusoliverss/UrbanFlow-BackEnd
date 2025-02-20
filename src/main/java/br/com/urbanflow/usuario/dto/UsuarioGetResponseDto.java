@@ -19,4 +19,6 @@ public class UsuarioGetResponseDto {
     private String telefone;
     @JsonProperty("dataNascimento")
     private Date dataNascimento;
+    @JsonProperty("tipo")
+    private String tipo;
 }

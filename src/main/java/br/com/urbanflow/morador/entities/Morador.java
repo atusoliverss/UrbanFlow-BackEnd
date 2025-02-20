@@ -23,7 +23,7 @@ public class Morador extends Usuario implements Serializable {
     @Column(name = "cpf", length = 11, nullable = false, unique = true)
     private String cpf;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_endereco", nullable = false)
     private Endereco endereco;
 

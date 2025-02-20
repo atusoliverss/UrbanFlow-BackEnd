@@ -16,7 +16,7 @@ public class UsuarioLoginPostRequestDto {
     @NotNull(message = "email é obrigatório")
     private String email;
 
-    @JsonProperty("password")
+    @JsonProperty("senha")
     @NotBlank(message = "senha não pode ser vazio")
     @NotNull(message = "senha é obrigatório")
     private String senha;

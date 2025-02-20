@@ -1,7 +1,7 @@
 package br.com.urbanflow.administrador.entities;
 
-import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import br.com.urbanflow.servicopublico.entities.ServicoPublico;
+import br.com.urbanflow.usuario.entities.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Administrador extends PersistenceEntity implements Serializable {
+public class Administrador extends Usuario implements Serializable {
 
     @Column(name = "cnpj", length = 14, nullable = false, unique = true)
     private String cnpj;
@@ -24,7 +24,8 @@ public class Administrador extends PersistenceEntity implements Serializable {
     @Column(nullable = false, length = 100)
     private String cargo;
 
-    @OneToOne
-    @JoinColumn(name = "id_servico")
+    @ManyToOne
+    @JoinColumn(name = "id_servico", nullable = false)
     private ServicoPublico servicoPublico;
+
 }
