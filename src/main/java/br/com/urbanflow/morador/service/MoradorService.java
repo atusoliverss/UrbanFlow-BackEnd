@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class MoradorSerice implements MoradorIService{
+public class MoradorService implements MoradorIService{
     private final MoradorIRepository moradorRepository;
 
     @Override
