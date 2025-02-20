@@ -1,7 +1,9 @@
 package br.com.urbanflow.historico.entities;
 
+import br.com.urbanflow.historico.enums.StatusHistorico;
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
 import br.com.urbanflow.administrador.entities.Administrador;
+import br.com.urbanflow.reclamacao.entities.Reclamacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +22,7 @@ import java.time.LocalDate;
 public class Historico extends PersistenceEntity implements Serializable {
 
     @Column(nullable = false, length = 50)
-    private String status;
+    private StatusHistorico status;
 
     @Column(nullable = false)
     private LocalDate data;
@@ -29,6 +31,6 @@ public class Historico extends PersistenceEntity implements Serializable {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_administrador", nullable = false)
-    private Administrador administrador;
+    @JoinColumn(name = "fk_reclamacao", nullable = false)
+    private Reclamacao reclamacao;
 }

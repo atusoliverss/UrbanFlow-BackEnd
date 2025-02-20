@@ -8,13 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServicoPublicoGetResponseDto{
+public class ServicoDto {
     @JsonProperty("nome")
     private String nome;
-
-    @JsonProperty("descricao")
-    private String descricao;
-
-    @JsonProperty("categoria")
-    private String categoria;
 }

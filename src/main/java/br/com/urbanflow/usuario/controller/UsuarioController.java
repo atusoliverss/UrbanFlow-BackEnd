@@ -66,8 +66,15 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(userService.update(user), UsuarioGetResponseDto.class));
     }
 
-    @PostMapping(path = "/findbyemailandsenha", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findByEmailAndSenha(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
-        return ResponseEntity.status(HttpStatus.OK).body(objectMapperUtil.map(userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getSenha()), UsuarioGetResponseDto.class));
+    @PostMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> login(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
+        Usuario usuario = userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getSenha());
+
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou senha inválidos");
+        }
+
+        return ResponseEntity.ok(objectMapperUtil.map(usuario, UsuarioGetResponseDto.class));
     }
+
 }

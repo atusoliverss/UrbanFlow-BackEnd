@@ -1,6 +1,7 @@
 package br.com.urbanflow.avaliacao.entities;
 
 import br.com.urbanflow.infrastructure.entities.PersistenceEntity;
+import br.com.urbanflow.morador.entities.Morador;
 import br.com.urbanflow.servicopublico.entities.ServicoPublico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,5 +32,9 @@ public class Avaliacao extends PersistenceEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_servico_publico", nullable = false)
     private ServicoPublico servicoPublico;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_morador", nullable = false)
+    private Morador morador;
 }
 

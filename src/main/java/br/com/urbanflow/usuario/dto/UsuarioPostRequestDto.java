@@ -1,11 +1,9 @@
 package br.com.urbanflow.usuario.dto;
 
-import br.com.urbanflow.usuario.enums.TipoUsuario;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,11 +33,13 @@ public class UsuarioPostRequestDto {
     @JsonProperty("telefone")
     private String telefone;
 
+    @NotBlank(message = "tipo não pode ser vazio")
+    @NotNull(message = "tipo é obrigatório")
+    @JsonProperty("tipo")
+    private String tipo;
+
     @NotNull(message = "data nascimento é obrigatório")
     @JsonProperty("dataNascimento")
     private Date dataNascimento;
 
-    @NotNull(message = "tipo é obrigatório")
-    @JsonProperty("tipo")
-    private TipoUsuario tipoUsuario;
 }
