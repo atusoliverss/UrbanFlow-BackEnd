@@ -1,1 +1,1 @@
-out/artifacts/UrbanFlow_BackEnd_jar/UrbanFlow-BackEnd.jar
+web: java -Dserver.port=$PORT -jar out/artifacts/UrbanFlow_BackEnd_jar/UrbanFlow-BackEnd.jar
