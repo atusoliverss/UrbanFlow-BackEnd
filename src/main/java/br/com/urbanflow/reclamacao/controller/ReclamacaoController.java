@@ -1,9 +1,10 @@
 package br.com.urbanflow.reclamacao.controller;
 
 import br.com.urbanflow.infrastructure.mapper.ObjectMapperUtil;
-import br.com.urbanflow.reclamacao.dto.ReclamacaoDto;
+import br.com.urbanflow.reclamacao.dto.ReclamacaoPostDto;
 import br.com.urbanflow.reclamacao.dto.ReclamacaoPutRequestDto;
 import br.com.urbanflow.reclamacao.entities.Reclamacao;
+import br.com.urbanflow.reclamacao.mapper.ReclamacaoMapper;
 import br.com.urbanflow.reclamacao.service.ReclamacaoIService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,25 +23,27 @@ public class ReclamacaoController {
 
     private final ReclamacaoIService reclamacaoService;
     private final ObjectMapperUtil objectMapperUtil;
+    private final ReclamacaoMapper reclamacaoMapper;
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<ReclamacaoDto>> findAll(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.reclamacaoService.findAll(pageable).map(c -> objectMapperUtil.map(c, ReclamacaoDto.class)));
+    public ResponseEntity<Page<ReclamacaoPostDto>> findAll(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.reclamacaoService.findAll(pageable).map(c -> objectMapperUtil.map(c, ReclamacaoPostDto.class)));
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody @Valid ReclamacaoDto reclamacaoDto ) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(reclamacaoService.save(objectMapperUtil.map(reclamacaoDto, Reclamacao.class)), ReclamacaoDto.class));
+    public ResponseEntity<?> save(@RequestBody @Valid ReclamacaoPostDto reclamacaoPostDto) {
+        Reclamacao reclamacao = reclamacaoMapper.toEntity(reclamacaoPostDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(reclamacaoMapper.toDto(reclamacaoService.save(reclamacao)));
     }
 
     @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> delete(@RequestBody @Valid ReclamacaoDto reclamacaoDto) {
-        reclamacaoService.delete(objectMapperUtil.map(reclamacaoDto, Reclamacao.class));
+    public ResponseEntity<?> delete(@RequestBody @Valid ReclamacaoPostDto reclamacaoPostDto) {
+        reclamacaoService.delete(objectMapperUtil.map(reclamacaoPostDto, Reclamacao.class));
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@RequestBody @Valid ReclamacaoPutRequestDto reclamacaoPutDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(reclamacaoService.update(objectMapperUtil.map(reclamacaoPutDto, Reclamacao.class)), ReclamacaoDto.class));
+        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(reclamacaoService.update(objectMapperUtil.map(reclamacaoPutDto, Reclamacao.class)), ReclamacaoPostDto.class));
     }
 }
