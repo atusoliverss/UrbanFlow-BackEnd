@@ -1,0 +1,54 @@
+version: '27.3.1'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: docker-db
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - backend
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: rian10cardosi@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - '80:81'
+    depends_on:
+      - postgres
+    networks:
+      - backend
+  docker-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8081'
+    container_name: docker-api
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.application.name": "UrbanFlow-BackEnd",
+        "spring.datasource.url": "jdbc:postgresql://postgres:5432/docker-db",
+        "spring.datasource.username": "postgres",
+        "spring.datasource.password": "postgres",
+        "spring.datasource.driver-class-name": "org.postgresql.Driver"
+      }'
+    depends_on:
+      - postgres
+      - pgadmin
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+volumes:
+  pg-data:
