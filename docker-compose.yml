@@ -1,4 +1,4 @@
-version: '27.3.1'
+version: '3.9'
 services:
   postgres:
     container_name: postgres
@@ -37,9 +37,7 @@ services:
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.application.name": "UrbanFlow-BackEnd",
-        "spring.datasource.url": "jdbc:postgresql://postgres:5432/docker-db",
-        "spring.datasource.username": "postgres",
-        "spring.datasource.password": "postgres",
+        "spring.datasource.url": "${DATABASE_URL}",
         "spring.datasource.driver-class-name": "org.postgresql.Driver"
       }'
     depends_on:

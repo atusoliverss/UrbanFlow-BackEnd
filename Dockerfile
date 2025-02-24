@@ -3,7 +3,7 @@ FROM maven:3.9.6-eclipse-temurin-21 AS build
 #WORKDIR /usr/src/app
 ADD target/*.jar docker-api.jar
 #RUN mvn package
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","docker-api.jar"]
 
 
 
