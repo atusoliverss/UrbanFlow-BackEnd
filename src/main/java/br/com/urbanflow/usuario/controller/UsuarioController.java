@@ -66,7 +66,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(userService.update(user), UsuarioGetResponseDto.class));
     }
 
-    @PostMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> login(@RequestBody @Valid UsuarioLoginPostRequestDto loginUser) {
         Usuario usuario = userService.findByEmailAndSenha(loginUser.getEmail(), loginUser.getSenha());
 

@@ -5,7 +5,7 @@ import br.com.urbanflow.historico.dto.HistoricoPutRequestDto;
 import br.com.urbanflow.historico.entities.Historico;
 import br.com.urbanflow.historico.service.HistoricoIService;
 import br.com.urbanflow.infrastructure.mapper.ObjectMapperUtil;
-import br.com.urbanflow.reclamacao.dto.ReclamacaoDto;
+import br.com.urbanflow.reclamacao.dto.ReclamacaoPostDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class HistoricoController {
                 .status(HttpStatus.CREATED)
                 .body(objectMapperUtil
                         .map(historicoIService.saveHistorico(objectMapperUtil
-                                .map(historicoDto, Historico.class)), ReclamacaoDto.class));
+                                .map(historicoDto, Historico.class)), ReclamacaoPostDto.class));
     }
 
     @DeleteMapping(path = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

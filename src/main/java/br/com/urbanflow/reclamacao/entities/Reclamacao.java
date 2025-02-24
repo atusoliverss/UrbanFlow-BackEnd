@@ -34,8 +34,8 @@ public class Reclamacao extends PersistenceEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusReclamacao status;
 
-    @Lob
-    private byte[] evidencia;
+//    @Lob
+//    private byte[] evidencia;
 
 
     @OneToMany(mappedBy = "reclamacao", cascade = CascadeType.ALL, orphanRemoval = true)
