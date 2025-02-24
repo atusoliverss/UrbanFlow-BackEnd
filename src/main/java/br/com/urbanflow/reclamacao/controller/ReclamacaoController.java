@@ -29,7 +29,7 @@ public class ReclamacaoController {
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<ReclamacaoPostDto>> findAll(Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(
-                this.reclamacaoService.findAll(pageable).map(c -> objectMapperUtil.map(c, ReclamacaoPostDto.class))
+                this.reclamacaoService.findAll(pageable).map(reclamacaoMapper::toDto)
         );
     }
 

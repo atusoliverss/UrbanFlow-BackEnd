@@ -25,7 +25,7 @@ public class MoradorController {
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<MoradorDto>> findAll(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.moradorService.findAll(pageable).map(c -> objectMapperUtil.map(c, MoradorDto.class)));
+        return ResponseEntity.status(HttpStatus.OK).body(this.moradorService.findAll(pageable).map(moradorMapper::toDto));
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
