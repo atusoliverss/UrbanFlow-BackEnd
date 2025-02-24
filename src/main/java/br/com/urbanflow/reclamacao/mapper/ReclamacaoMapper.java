@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ReclamacaoMapper {
+
     private final ServicoPublicoIService servicoPublicoIService;
     private final UsuarioIService usuarioIService;
     private final MoradorIService moradorIService;
