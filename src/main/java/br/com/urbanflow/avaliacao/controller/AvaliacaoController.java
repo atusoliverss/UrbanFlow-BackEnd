@@ -25,7 +25,7 @@ public class AvaliacaoController {
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<AvaliacaoDto>> findAll(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.avaliacaoService.findAll(pageable).map(c -> objectMapperUtil.map(c, AvaliacaoDto.class)));
+        return ResponseEntity.status(HttpStatus.OK).body(this.avaliacaoService.findAll(pageable).map(avaliacaoMapper::toDto));
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
