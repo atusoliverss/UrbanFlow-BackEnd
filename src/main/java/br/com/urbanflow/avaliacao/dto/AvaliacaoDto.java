@@ -1,7 +1,9 @@
 package br.com.urbanflow.avaliacao.dto;
 
+import br.com.urbanflow.servicopublico.entities.ServicoPublico;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +26,9 @@ public class AvaliacaoDto {
     @JsonProperty("comentario")
     @NotNull(message = "Comentario não pode ser vazio")
     private String comentario;
+
+    @JsonProperty("servico")
+    @NotNull(message = "servico não pode ser vazio")
+    @Valid
+    private ServicoPublico servicoPublico;
 }
