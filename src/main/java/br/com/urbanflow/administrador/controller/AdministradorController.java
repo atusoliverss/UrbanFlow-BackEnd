@@ -1,14 +1,11 @@
 package br.com.urbanflow.administrador.controller;
 
 import br.com.urbanflow.administrador.dto.AdministradorDto;
+import br.com.urbanflow.administrador.dto.AdministradorGetDto;
 import br.com.urbanflow.administrador.entities.Administrador;
 import br.com.urbanflow.administrador.mapper.AdministradorMapper;
 import br.com.urbanflow.administrador.service.AdministradorIService;
 import br.com.urbanflow.infrastructure.mapper.ObjectMapperUtil;
-import br.com.urbanflow.morador.dto.MoradorDto;
-import br.com.urbanflow.morador.entities.Morador;
-import br.com.urbanflow.servicopublico.entities.ServicoPublico;
-import br.com.urbanflow.servicopublico.service.ServicoPublicoIService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,8 +25,8 @@ public class AdministradorController {
     private final ObjectMapperUtil objectMapperUtil;
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<AdministradorDto>> findAll(Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.administradorService.findAll(pageable).map(c -> objectMapperUtil.map(c, AdministradorDto.class)));
+    public ResponseEntity<Page<AdministradorGetDto>> findAll(Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.administradorService.findAll(pageable).map(administradorMapper::toDto));
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -2,6 +2,7 @@ package br.com.urbanflow.avaliacao.controller;
 
 import br.com.urbanflow.avaliacao.dto.AvaliacaoDto;
 import br.com.urbanflow.avaliacao.entities.Avaliacao;
+import br.com.urbanflow.avaliacao.mapper.AvaliacaoMapper;
 import br.com.urbanflow.avaliacao.service.AvaliacaoIService;
 import br.com.urbanflow.infrastructure.mapper.ObjectMapperUtil;
 import jakarta.validation.Valid;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class AvaliacaoController {
     private final AvaliacaoIService avaliacaoService;
     private final ObjectMapperUtil objectMapperUtil;
+    private final AvaliacaoMapper avaliacaoMapper;
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<AvaliacaoDto>> findAll(Pageable pageable) {
@@ -27,8 +29,9 @@ public class AvaliacaoController {
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody @Valid AvaliacaoDto avaliacaoDto ) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(objectMapperUtil.map(avaliacaoService.save(objectMapperUtil.map(avaliacaoDto, Avaliacao.class)), AvaliacaoDto.class));
+    public ResponseEntity<?> save(@RequestBody @Valid AvaliacaoDto avaliacaoDto) {
+        Avaliacao avaliacao = avaliacaoMapper.toEntity(avaliacaoDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoMapper.toDto(avaliacaoService.save(avaliacao)));
     }
 
     @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)

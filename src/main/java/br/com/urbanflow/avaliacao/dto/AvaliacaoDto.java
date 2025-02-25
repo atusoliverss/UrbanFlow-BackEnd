@@ -27,8 +27,11 @@ public class AvaliacaoDto {
     @NotNull(message = "Comentario não pode ser vazio")
     private String comentario;
 
+    @JsonProperty("morador")
+    @NotNull(message = "evidencia não pode ser vazia")
+    private String emailMorador;
+
     @JsonProperty("servico")
     @NotNull(message = "servico não pode ser vazio")
-    @Valid
-    private ServicoPublico servicoPublico;
+    private String nomeServicoPublico;
 }
